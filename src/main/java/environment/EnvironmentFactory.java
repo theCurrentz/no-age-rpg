@@ -19,7 +19,7 @@ public class EnvironmentFactory implements EntityFactory {
         double height = Double.parseDouble(config.getProperty("game.height"));
 
         return FXGL.entityBuilder()
-                .view(new Rectangle(width, height, Color.BLACK))
+                .view(new Rectangle(width, height, Color.DARKGREEN))
                 .with(new IrremovableComponent())
                 .zIndex(-100)
                 .build();
