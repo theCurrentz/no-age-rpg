@@ -9,6 +9,7 @@ public class PlayerComponent extends Component {
     private TransformComponent position;
 
     private double speed = 0;
+    private final static double constantSpeed = 5;
 
     @Override
     public void onUpdate(double tpf) {
@@ -16,18 +17,18 @@ public class PlayerComponent extends Component {
     }
 
     public void up() {
-        position.translateY(-5 * speed);
+        position.translateY(-constantSpeed * speed);
     }
 
     public void down() {
-        position.translateY(5 * speed);
+        position.translateY(constantSpeed * speed);
     }
 
     public void left() {
-        position.translateX(-5 * speed);
+        position.translateX(-constantSpeed * speed);
     }
 
     public void right() {
-        position.translateX(5 * speed);
+        position.translateX(constantSpeed * speed);
     }
 }

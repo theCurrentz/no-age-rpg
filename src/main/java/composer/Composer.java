@@ -6,7 +6,7 @@ import player.PlayerFactory;
 
 public class Composer {
     private static Composer instance;
-
+    //Singleton Pattern for the Player driver.
     public static Composer getInstance() {
         if (instance == null) {
             instance = new Composer();
