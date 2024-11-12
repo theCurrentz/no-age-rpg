@@ -1,11 +1,15 @@
 package composer;
 
 import com.almasb.fxgl.dsl.FXGL;
+import com.almasb.fxgl.entity.Entity;
 import environment.EnvironmentFactory;
 import player.PlayerFactory;
 
+import static com.almasb.fxgl.dsl.FXGLForKtKt.spawn;
+
 public class Composer {
     private static Composer instance;
+    public Entity player;
 
     public static Composer getInstance() {
         if (instance == null) {
@@ -18,7 +22,8 @@ public class Composer {
         FXGL.getGameWorld().addEntityFactory(new EnvironmentFactory());
         FXGL.getGameWorld().addEntityFactory(new PlayerFactory());
         FXGL.spawn("Background");
-        FXGL.spawn("Player");
+        player = FXGL.spawn("Player");
+
     }
 
 }

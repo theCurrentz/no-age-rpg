@@ -8,14 +8,21 @@ import com.almasb.fxgl.entity.Spawns;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
+
+
 public class PlayerFactory implements EntityFactory {
+    public enum EntityType{
+        PLAYER;
+    }
+
 
     @Spawns("Player")
     public Entity spawnPlayer(SpawnData data) {
 
-        return FXGL.entityBuilder()
+        return FXGL.entityBuilder(data)
+                .type(EntityType.PLAYER)
                 .at((double) FXGL.getAppWidth() /2, (double) FXGL.getAppHeight()/2)
-                .view(new Circle(20, Color.YELLOW))
+                .view(new Circle(20, Color.BLUE))
                 .with(new PlayerComponent())
                 .build();
     }

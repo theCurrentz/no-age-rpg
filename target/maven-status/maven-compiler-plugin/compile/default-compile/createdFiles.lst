@@ -1,1 +1,7 @@
+player\PlayerFactory.class
 Main.class
+player\PlayerComponent.class
+player\PlayerFactory$EntityType.class
+config\Config.class
+environment\EnvironmentFactory.class
+composer\Composer.class

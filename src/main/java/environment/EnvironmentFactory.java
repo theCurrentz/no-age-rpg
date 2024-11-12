@@ -15,6 +15,7 @@ public class EnvironmentFactory implements EntityFactory {
     @Spawns("Background")
     public Entity spawnBackground(SpawnData data) {
         Config config = Config.getInstance();
+
         double width = Double.parseDouble(config.getProperty("game.width"));
         double height = Double.parseDouble(config.getProperty("game.height"));
 
