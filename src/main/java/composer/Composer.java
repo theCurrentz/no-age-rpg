@@ -23,7 +23,6 @@ public class Composer {
         FXGL.getGameWorld().addEntityFactory(new PlayerFactory());
         FXGL.spawn("Background");
         player = FXGL.spawn("Player");
-
     }
 
 }

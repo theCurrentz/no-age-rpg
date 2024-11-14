@@ -1,23 +1,18 @@
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.dsl.FXGL;
-import com.almasb.fxgl.entity.components.TransformComponent;
+
 import composer.Composer;
 import config.Config;
 import javafx.scene.input.KeyCode;
 import player.PlayerComponent;
 
-import java.util.Map;
-
-import static com.almasb.fxgl.dsl.FXGLForKtKt.onKey;
 
 
 
 public class Main extends GameApplication {
     Config config = Config.getInstance();
     Composer composer = Composer.getInstance();
-
-//    private TransformComponent position = new TransformComponent();
 
     @Override
     protected void initSettings(GameSettings settings) {
@@ -38,10 +33,10 @@ public class Main extends GameApplication {
 
     @Override
     protected void initInput() {
-        FXGL.onKey(KeyCode.D, "Move right", ()-> { composer.player.getComponent(PlayerComponent.class).right();});
+        FXGL.onKey(KeyCode.W, "Move up", ()-> { composer.player.getComponent(PlayerComponent.class).up();});
         FXGL.onKey(KeyCode.A, "Move left", ()-> { composer.player.getComponent(PlayerComponent.class).left();});
         FXGL.onKey(KeyCode.S, "Move down", ()-> { composer.player.getComponent(PlayerComponent.class).down();});
-        FXGL.onKey(KeyCode.W, "Move up", ()-> { composer.player.getComponent(PlayerComponent.class).up();});
+        FXGL.onKey(KeyCode.D, "Move right", ()-> { composer.player.getComponent(PlayerComponent.class).right();});
     }
 
 
