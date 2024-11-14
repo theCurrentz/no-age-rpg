@@ -5,9 +5,7 @@ import com.almasb.fxgl.entity.components.TransformComponent;
 
 public class PlayerComponent extends Component {
 
-
-    private TransformComponent position = new TransformComponent();
-
+private TransformComponent position = new TransformComponent();
 
 //    private double speed = 0;
 
@@ -22,7 +20,7 @@ public class PlayerComponent extends Component {
 
     public void left() { position.translateX(-5); }
 
-    public void right() {
-        position.translateX(5);
+    public void right() { position.translateX(5);
+
     }
 }
