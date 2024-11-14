@@ -1,12 +1,15 @@
 package composer;
 
 import com.almasb.fxgl.dsl.FXGL;
+import com.almasb.fxgl.entity.Entity;
 import environment.EnvironmentFactory;
 import player.PlayerFactory;
 
+
 public class Composer {
     private static Composer instance;
-    //Singleton Pattern for the Player driver.
+    public Entity player;
+
     public static Composer getInstance() {
         if (instance == null) {
             instance = new Composer();
@@ -18,7 +21,7 @@ public class Composer {
         FXGL.getGameWorld().addEntityFactory(new EnvironmentFactory());
         FXGL.getGameWorld().addEntityFactory(new PlayerFactory());
         FXGL.spawn("Background");
-        FXGL.spawn("Player");
+        player = FXGL.spawn("Player");
     }
 
 }
