@@ -5,17 +5,6 @@ import com.almasb.fxgl.entity.components.TransformComponent;
 
 public class PlayerComponent extends Component {
 
-    private static PlayerComponent instance;
-
-
-
-
-    public static PlayerComponent getInstance() {
-        if (instance == null) {
-            instance = new PlayerComponent();
-        }
-        return instance;
-    }
 
     private TransformComponent position = new TransformComponent();
 

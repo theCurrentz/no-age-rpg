@@ -5,7 +5,6 @@ import com.almasb.fxgl.entity.Entity;
 import environment.EnvironmentFactory;
 import player.PlayerFactory;
 
-import static com.almasb.fxgl.dsl.FXGLForKtKt.spawn;
 
 public class Composer {
     private static Composer instance;

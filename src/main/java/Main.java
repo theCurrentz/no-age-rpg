@@ -8,8 +8,6 @@ import javafx.scene.input.KeyCode;
 import player.PlayerComponent;
 
 
-
-
 public class Main extends GameApplication {
     Config config = Config.getInstance();
     Composer composer = Composer.getInstance();
@@ -33,10 +31,10 @@ public class Main extends GameApplication {
 
     @Override
     protected void initInput() {
-        FXGL.onKey(KeyCode.W, "Move up", ()-> { composer.player.getComponent(PlayerComponent.class).up();});
-        FXGL.onKey(KeyCode.A, "Move left", ()-> { composer.player.getComponent(PlayerComponent.class).left();});
-        FXGL.onKey(KeyCode.S, "Move down", ()-> { composer.player.getComponent(PlayerComponent.class).down();});
-        FXGL.onKey(KeyCode.D, "Move right", ()-> { composer.player.getComponent(PlayerComponent.class).right();});
+        FXGL.onKey(KeyCode.W, "Move up", ()->  composer.player.getComponent(PlayerComponent.class).up());
+        FXGL.onKey(KeyCode.A, "Move left", ()-> composer.player.getComponent(PlayerComponent.class).left());
+        FXGL.onKey(KeyCode.S, "Move down", ()-> composer.player.getComponent(PlayerComponent.class).down());
+        FXGL.onKey(KeyCode.D, "Move right", ()-> composer.player.getComponent(PlayerComponent.class).right());
     }
 
 
