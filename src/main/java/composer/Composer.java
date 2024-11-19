@@ -3,7 +3,11 @@ package composer;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import environment.EnvironmentFactory;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import player.PlayerFactory;
+
+import java.awt.*;
 
 
 public class Composer {
@@ -23,5 +27,7 @@ public class Composer {
         FXGL.spawn("Background");
         player = FXGL.spawn("Player");
     }
+
+
 
 }
