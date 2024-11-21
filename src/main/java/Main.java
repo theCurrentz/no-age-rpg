@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Box;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import player.PlayerComponent;
@@ -58,9 +59,16 @@ public class Main extends GameApplication {
         int width = Integer.parseInt(config.getProperty("game.width"));
         int height = Integer.parseInt(config.getProperty("game.height"));
 
+        Rectangle statRectangle = new Rectangle();
+        statRectangle.setHeight(100);
+        statRectangle.setWidth(100);
+        statRectangle.setStyle("-fx-fill: gray; -fx-stroke: black; -fx-stroke-width: 3;");
+        FXGL.addUINode(statRectangle, width-105, 2);
+
         Label hpLabel = new Label();
         Label manaLabel = new Label();
         Label expLabel = new Label();
+
 
         hpLabel.setTextFill(Color.RED);
         hpLabel.setFont(Font.font(20.0));
@@ -85,14 +93,20 @@ public class Main extends GameApplication {
         FXGL.addUINode(expLabel, width-100, 60);
         expLabel.textProperty().bind(FXGL.getip("Exp").asString("Exp: %d"));
 
-
+        Rectangle buttonRectangle = new Rectangle();
+        buttonRectangle.setHeight(65);
+        buttonRectangle.setWidth(250);
+        buttonRectangle.setStyle("-fx-fill: gray; -fx-stroke: black; -fx-stroke-width: 3;");
+        FXGL.addUINode(buttonRectangle, width-260, height-75);
 
         Button attackButton = new Button("Attack!");
         attackButton.setFont(Font.font(20.0));
+        attackButton.setMinWidth(100);
         FXGL.addUINode(attackButton, width-250, height-65);
 
         Button dashButton = new Button("Dash!");
         dashButton.setFont(Font.font(20.0));
+        dashButton.setMinWidth(100);
         FXGL.addUINode(dashButton, width-125, height-65);
 
     }
