@@ -31,12 +31,10 @@ public class Main extends GameApplication {
 
     @Override
     protected void initSettings(GameSettings settings) {
-        //Create the width and height.
         int width = Integer.parseInt(config.getProperty("game.width"));
         int height = Integer.parseInt(config.getProperty("game.height"));
-        //Title for the No Age game window.
+
         settings.setTitle("The No Age");
-        //Set the window width and height.
         settings.setWidth(width);
         settings.setHeight(height);
     }
@@ -44,10 +42,8 @@ public class Main extends GameApplication {
     @Override
     protected void initGame() {
         composer.initGameWorld();
-
-        int width = Integer.parseInt(config.getProperty("game.width"));
-        int height = Integer.parseInt(config.getProperty("game.height"));
     }
+
     @Override
     protected void initGameVars(Map<String, Object> vars) {//Eric
         vars.put("HP", hpValue);
