@@ -22,19 +22,19 @@ public class Composer {
     public void initGameWorld() {
         FXGL.getGameWorld().addEntityFactory(new EnvironmentFactory());
         FXGL.getGameWorld().addEntityFactory(new PlayerFactory());
-        FXGL.getGameWorld().addEntityFactory(new EnemyFactory());
-
-        EnemyComposer enemyComposer = new EnemyComposer();
+//        FXGL.getGameWorld().addEntityFactory(new EnemyFactory());
+//
+//        EnemyComposer enemyComposer = new EnemyComposer();
 
         FXGL.spawn("Background");
 
 
         FXGL.setLevelFromMap("wasteland.tmx");
 
-        player = FXGL.getGameWorld().spawn("Player");
+//        player = FXGL.getGameWorld().spawn("Player");
 
         player = FXGL.spawn("Player");
-        enemyComposer.createEnemyBatch(10);
+//        enemyComposer.createEnemyBatch(10);
     }
 
 }
