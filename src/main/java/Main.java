@@ -119,22 +119,9 @@ public class Main extends GameApplication {
 
     @Override
     protected void initInput() {
-
-        getInput().addAction(new UserAction("Left") {
-            @Override
-            protected void onAction() { composer.player.getComponent(PlayerComponent.class).left();
-            }
-        }, KeyCode.A);
-        getInput().addAction(new UserAction("Right") {
-            @Override
-            protected void onAction() { composer.player.getComponent(PlayerComponent.class).right();
-            }
-        }, KeyCode.D);
-        getInput().addAction(new UserAction("Jump") {
-            @Override
-            protected void onAction() { composer.player.getComponent(PlayerComponent.class).jump();
-            }
-        }, KeyCode.SPACE);
+        FXGL.onKey(KeyCode.D, "Move right", ()-> { composer.player.getComponent(PlayerComponent.class).right();});
+        FXGL.onKey(KeyCode.A, "Move left", ()-> { composer.player.getComponent(PlayerComponent.class).left();});
+        FXGL.onKey(KeyCode.SPACE, "Jump up", ()-> { composer.player.getComponent(PlayerComponent.class).jump();});
 
     }
 
