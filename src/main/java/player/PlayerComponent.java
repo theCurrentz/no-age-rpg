@@ -1,5 +1,6 @@
 package player;
 
+import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.physics.PhysicsComponent;
 
@@ -15,11 +16,11 @@ public class PlayerComponent extends Component {
 
 private PhysicsComponent physics = new PhysicsComponent();
 
-    private double speed;
+//    private double speed;
     AnimatedTexture playerTexture;
     AnimationChannel idle;
 
-//  @Override
+//    @Override
 //    public void onUpdate(Entity entity, double tpf) {
 //       speed = tpf * 60;
 //    }
