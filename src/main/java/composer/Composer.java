@@ -21,7 +21,10 @@ public class Composer {
         FXGL.getGameWorld().addEntityFactory(new EnvironmentFactory());
         FXGL.getGameWorld().addEntityFactory(new PlayerFactory());
         FXGL.spawn("Background");
-        player = FXGL.spawn("Player");
+
+        FXGL.setLevelFromMap("wasteland.tmx");
+
+        player = FXGL.getGameWorld().spawn("Player");
     }
 
 }

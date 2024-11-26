@@ -1,11 +1,13 @@
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
-import com.almasb.fxgl.dsl.FXGL;
 
+import com.almasb.fxgl.input.UserAction;
 import composer.Composer;
 import config.Config;
 import javafx.scene.input.KeyCode;
 import player.PlayerComponent;
+
+import static com.almasb.fxgl.dsl.FXGLForKtKt.getInput;
 
 
 public class Main extends GameApplication {
@@ -29,14 +31,30 @@ public class Main extends GameApplication {
         composer.initGameWorld();
     }
 
+    @Override
+    protected void initPhysics(){
+    }
 
 
     @Override
     protected void initInput() {
-        FXGL.onKey(KeyCode.W, "Move up", ()->  composer.player.getComponent(PlayerComponent.class).up());
-        FXGL.onKey(KeyCode.A, "Move left", ()-> composer.player.getComponent(PlayerComponent.class).left());
-        FXGL.onKey(KeyCode.S, "Move down", ()-> composer.player.getComponent(PlayerComponent.class).down());
-        FXGL.onKey(KeyCode.D, "Move right", ()-> composer.player.getComponent(PlayerComponent.class).right());
+
+        getInput().addAction(new UserAction("Left") {
+            @Override
+            protected void onAction() { composer.player.getComponent(PlayerComponent.class).left();
+            }
+        }, KeyCode.A);
+        getInput().addAction(new UserAction("Right") {
+            @Override
+            protected void onAction() { composer.player.getComponent(PlayerComponent.class).right();
+            }
+        }, KeyCode.D);
+        getInput().addAction(new UserAction("Jump") {
+            @Override
+            protected void onAction() { composer.player.getComponent(PlayerComponent.class).jump();
+            }
+        }, KeyCode.SPACE);
+
     }
 
 

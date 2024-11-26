@@ -1,26 +1,26 @@
 package player;
 
+import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.component.Component;
-import com.almasb.fxgl.entity.components.TransformComponent;
+import com.almasb.fxgl.physics.PhysicsComponent;
+
 
 public class PlayerComponent extends Component {
 
-private TransformComponent position = new TransformComponent();
+
+private PhysicsComponent physics = new PhysicsComponent();
 
 //    private double speed = 0;
 
-    @Override
-    public void onUpdate(double tpf) {
+//    @Override
+    public void onUpdate(Entity entity, double tpf) {
 //        speed = tpf * 60;
     }
 
-    public void up() { position.translateY(-5); }
+    public void left() { physics.setVelocityX(-150); }
 
-    public void down() { position.translateY(5); }
+    public void right() { physics.setVelocityX(150); }
 
-    public void left() { position.translateX(-5); }
+    public void jump(){ physics.setVelocityY(-200); }
 
-    public void right() { position.translateX(5);
-
-    }
 }
