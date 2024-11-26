@@ -27,10 +27,16 @@ public class PlayerFactory implements EntityFactory {
         return FXGL.entityBuilder(data)
                 .type(EntityType.PLAYER)
                 .at((double) FXGL.getAppWidth() /2, (double) FXGL.getAppHeight()/2)
+
                 .viewWithBBox(texture("brick.png"))
                 .with(new CollidableComponent(true))
                 .with(physics)
+
+
+                //.viewWithBBox(texture("brick.png"))
+
                 .with(new PlayerComponent())
+                .collidable()
                 .build();
     }
 
