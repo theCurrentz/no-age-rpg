@@ -1,9 +1,12 @@
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
-import com.almasb.fxgl.dsl.FXGL;
+
+
+import com.almasb.fxgl.input.UserAction;
 
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.ui.FXGLButton;
+
 import composer.Composer;
 import config.Config;
 import javafx.scene.control.Button;
@@ -19,6 +22,8 @@ import javafx.scene.shape.Rectangle;
 
 import java.awt.*;
 import java.util.Map;
+
+import static com.almasb.fxgl.dsl.FXGLForKtKt.getInput;
 
 
 public class Main extends GameApplication {
@@ -45,6 +50,10 @@ public class Main extends GameApplication {
     }
 
     @Override
+
+    protected void initPhysics(){
+    }
+
     protected void initGameVars(Map<String, Object> vars) {//Eric
         vars.put("HP", hpValue);
         vars.put("Mana", manaValue);
@@ -109,10 +118,23 @@ public class Main extends GameApplication {
 
     @Override
     protected void initInput() {
-        FXGL.onKey(KeyCode.W, "Move up", ()->  composer.player.getComponent(PlayerComponent.class).up());
-        FXGL.onKey(KeyCode.A, "Move left", ()-> composer.player.getComponent(PlayerComponent.class).left());
-        FXGL.onKey(KeyCode.S, "Move down", ()-> composer.player.getComponent(PlayerComponent.class).down());
-        FXGL.onKey(KeyCode.D, "Move right", ()-> composer.player.getComponent(PlayerComponent.class).right());
+
+        getInput().addAction(new UserAction("Left") {
+            @Override
+            protected void onAction() { composer.player.getComponent(PlayerComponent.class).left();
+            }
+        }, KeyCode.A);
+        getInput().addAction(new UserAction("Right") {
+            @Override
+            protected void onAction() { composer.player.getComponent(PlayerComponent.class).right();
+            }
+        }, KeyCode.D);
+        getInput().addAction(new UserAction("Jump") {
+            @Override
+            protected void onAction() { composer.player.getComponent(PlayerComponent.class).jump();
+            }
+        }, KeyCode.SPACE);
+
     }
 
 

@@ -27,10 +27,14 @@ public class Composer {
         EnemyComposer enemyComposer = new EnemyComposer();
 
         FXGL.spawn("Background");
+
+
+        FXGL.setLevelFromMap("wasteland.tmx");
+
+        player = FXGL.getGameWorld().spawn("Player");
+
         player = FXGL.spawn("Player");
         enemyComposer.createEnemyBatch(10);
     }
-
-
 
 }
