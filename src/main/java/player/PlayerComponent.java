@@ -10,11 +10,15 @@ import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
 import javafx.util.Duration;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 public class PlayerComponent extends Component {
 
 
 private PhysicsComponent physics = new PhysicsComponent();
+    Cooldown coolDown = new Cooldown();
 
 //    private double speed;
     AnimatedTexture playerTexture;
@@ -25,30 +29,35 @@ private PhysicsComponent physics = new PhysicsComponent();
 //       speed = tpf * 60;
 //    }
 
-    public void left() { physics.setVelocityX(-150);
+    public void left() { physics.setVelocityX(-100);
         if (playerTexture.getAnimationChannel() != idle) {
             playerTexture.loopAnimationChannel(idle);
         }
     }
 
-    public void right() { physics.setVelocityX(150);
+    public void right() { physics.setVelocityX(100);
         if (playerTexture.getAnimationChannel() != idle) {
             playerTexture.loopAnimationChannel(idle);
         }
     }
 
     public void jump() {
-        physics.setVelocityY(-200);
+        coolDown.jumpCoolDown();
         if (playerTexture.getAnimationChannel() != idle) {
             playerTexture.loopAnimationChannel(idle);
         }
+
     }
+
+
 
 
     PlayerComponent(){
         idle = new AnimationChannel(FXGL.image("player/Idle_KG_1.png"), Duration.seconds(0.5), 4);
         playerTexture = new AnimatedTexture(idle);
     }
+
+
 
     //private AnimationChannel left;
 
@@ -59,6 +68,50 @@ private PhysicsComponent physics = new PhysicsComponent();
     }
     //1 tick = 1/1,000,000 of a second
     //TPF = Tick per frame
+
+
+    public class Cooldown {
+
+        private static Timer timer;
+
+        public Cooldown() {
+        }
+        public void jumpCoolDown() {
+            if (timer == null) {
+                // Perform the action
+                physics.setVelocityY(-300);
+                timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        timer = null; // Reset the timer
+                    }
+                }, 1500); // Cooldown of 1.5 second
+            } else {
+                System.out.println("Action on cooldown!");
+            }
+        }
+    }
+
+
+
+
+
+
+
+public static class EnemyComponent extends PlayerComponent{
+    EnemyComponent(){
+        idle = new AnimationChannel(FXGL.image("brick.png"), Duration.seconds(5), 100);
+        playerTexture = new AnimatedTexture(idle);
+    }
+}
+
+
+
+
+
+
+
 
 
 //    public void right() {

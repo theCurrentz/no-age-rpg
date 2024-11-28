@@ -55,6 +55,8 @@ public class Main extends GameApplication {
     protected void initPhysics(){
     }
 
+
+
     protected void initGameVars(Map<String, Object> vars) {//Eric
         vars.put("HP", hpValue);
         vars.put("Mana", manaValue);
@@ -121,7 +123,7 @@ public class Main extends GameApplication {
     protected void initInput() {
         FXGL.onKey(KeyCode.D, "Move right", ()-> { composer.player.getComponent(PlayerComponent.class).right();});
         FXGL.onKey(KeyCode.A, "Move left", ()-> { composer.player.getComponent(PlayerComponent.class).left();});
-        FXGL.onKey(KeyCode.SPACE, "Jump up", ()-> { composer.player.getComponent(PlayerComponent.class).jump();});
+        FXGL.onKey(KeyCode.W, "Jump up", ()-> { composer.player.getComponent(PlayerComponent.class).jump();});
 
     }
 
