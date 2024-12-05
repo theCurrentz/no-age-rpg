@@ -21,11 +21,13 @@ private final PhysicsComponent physics = new PhysicsComponent();
     AnimationChannel walk;
     AnimationChannel jump;
     AnimationChannel land;
+    AnimationChannel attack;
+    AnimationChannel dash;
 
-    int currentHealth = 100;
+    int currentHealth;
     int maxHealth = 100;
 
-    int currentMana = 100;
+    int currentMana;
     int maxMana = 100;
 
     int currentExp;
@@ -47,15 +49,17 @@ private final PhysicsComponent physics = new PhysicsComponent();
     }
 
     PlayerComponent(){
-        idle = new AnimationChannel(FXGL.image("player/Idle_KG_1.png"),  Duration.seconds(1), 4);
-        walk = new AnimationChannel(FXGL.image("player/Walking_KG_1.png"),  Duration.seconds(2), 7);
-        jump = new AnimationChannel(FXGL.image("player/Jump_KG_1.png"),  Duration.seconds(1), 6);
-        land = new AnimationChannel(FXGL.image("player/Landing_KG_1.png"),  Duration.seconds(0.4), 4);
+        idle = new AnimationChannel(FXGL.image("player/Idle_KG_1.png"),  Duration.seconds(.5), 4);
+        walk = new AnimationChannel(FXGL.image("player/Walking_KG_1.png"),  Duration.seconds(.7), 7);
+        jump = new AnimationChannel(FXGL.image("player/Jump_KG_1.png"),  Duration.seconds(.6), 6);
+        attack = new AnimationChannel(FXGL.image("player/Attack_KG_1.png"),  Duration.seconds(0.5), 6);
+        dash = new AnimationChannel(FXGL.image("player/Shield_idle_KG.png"),  Duration.seconds(1), 4);
         playerTexture = new AnimatedTexture(idle);
+        playerTexture.setTranslateX(-32);
         currentHealth = maxHealth;
         currentMana = maxMana;
-        boolean died = false;
-        boolean move = true;
+        died = false;
+        move = true;
     }
 
     //1 tick = 1/1,000,000 of a second
@@ -69,16 +73,20 @@ private final PhysicsComponent physics = new PhysicsComponent();
         return FXGLMath.abs(physics.getVelocityX()) > 0;
     }
 
-    public void left() { physics.setVelocityX(-150);
+    public void left() {
+        physics.setVelocityX(-100);
         getEntity().setScaleX(-1);
     }
 
-    public void right() { physics.setVelocityX(150);
+    public void right() {
+        physics.setVelocityX(100);
         getEntity().setScaleX(1);
     }
 
-    public void jump() { physics.setVelocityY(-200);
+    public void jump() {
+//physics.setVelocityY(-200);
         coolDown.jumpCoolDown();
+        //if(playerTexture.getAnimationChannel(jump))
         playerTexture.playAnimationChannel(jump);
     }
 
@@ -137,6 +145,14 @@ private final PhysicsComponent physics = new PhysicsComponent();
                 level++;
             } else currentExp += amount;
         }else currentExp = maxExp;
+    }
+
+    public void attack() {
+        playerTexture.playAnimationChannel(attack);
+    }
+
+    public void dash() {
+        playerTexture.playAnimationChannel(dash);
     }
 
     public class Cooldown {

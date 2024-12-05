@@ -30,12 +30,9 @@ public class PlayerFactory implements EntityFactory {
         return FXGL.entityBuilder(data)
                 .type(EntityType.PLAYER)
                 .at((double) FXGL.getAppWidth() /2, (double) FXGL.getAppHeight()/2)
-
 //                .with(new CollidableComponent(true))
                 .with(physics)
-
                 .bbox(new HitBox(BoundingShape.box(32, 64)))
-
                 .with(new PlayerComponent())
                 .collidable()
                 .build();
