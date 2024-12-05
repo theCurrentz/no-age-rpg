@@ -8,11 +8,14 @@ import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
 import javafx.util.Duration;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class PlayerComponent extends Component {
 
 private final PhysicsComponent physics = new PhysicsComponent();
 
+    Cooldown coolDown = new Cooldown();
     AnimatedTexture playerTexture;
     AnimationChannel idle;
     AnimationChannel walk;
@@ -75,6 +78,7 @@ private final PhysicsComponent physics = new PhysicsComponent();
     }
 
     public void jump() { physics.setVelocityY(-200);
+        coolDown.jumpCoolDown();
         playerTexture.playAnimationChannel(jump);
     }
 
@@ -135,7 +139,35 @@ private final PhysicsComponent physics = new PhysicsComponent();
         }else currentExp = maxExp;
     }
 
+    public class Cooldown {
 
+        private static Timer timer;
+
+        public Cooldown() {
+        }
+        public void jumpCoolDown() {
+            if (timer == null) {
+                // Perform the action
+                physics.setVelocityY(-300);
+                timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        timer = null; // Reset the timer
+                    }
+                }, 1500); // Cooldown of 1.5 second
+            } else {
+                System.out.println("Action on cooldown!");
+            }
+        }
+    }
+
+    public static class EnemyComponent extends PlayerComponent{
+        EnemyComponent(){
+            idle = new AnimationChannel(FXGL.image("brick.png"), Duration.seconds(5), 100);
+            playerTexture = new AnimatedTexture(idle);
+        }
+    }
 
 // Note: This is the excess Exp demonstration.
 //                               |||||||
