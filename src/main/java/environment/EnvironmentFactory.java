@@ -22,6 +22,8 @@ public class EnvironmentFactory implements EntityFactory {
         PLATFORM
     }
 
+
+
     @Spawns("Background")
     public Entity spawnBackground(SpawnData data) {
         Config config = Config.getInstance();

@@ -54,7 +54,7 @@ public class PlayerFactory implements EntityFactory {
 //                .with(new CollidableComponent(true))
                 .with(physics)
 
-                .bbox(new HitBox(BoundingShape.box(50, 50)))
+                .bbox(new HitBox(BoundingShape.box(40, 64)))
 
                 .with(new EnemyComponent())
                 .collidable()

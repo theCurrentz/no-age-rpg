@@ -17,12 +17,13 @@ import java.util.TimerTask;
 public class PlayerComponent extends Component {
 
 
-private PhysicsComponent physics = new PhysicsComponent();
+public PhysicsComponent physics = new PhysicsComponent();
     Cooldown coolDown = new Cooldown();
 
 //    private double speed;
     AnimatedTexture playerTexture;
     AnimationChannel idle;
+
 
 //    @Override
 //    public void onUpdate(Entity entity, double tpf) {
@@ -52,9 +53,11 @@ private PhysicsComponent physics = new PhysicsComponent();
 
 
 
-    PlayerComponent(){
+    public PlayerComponent(){
         idle = new AnimationChannel(FXGL.image("player/Idle_KG_1.png"), Duration.seconds(0.5), 4);
         playerTexture = new AnimatedTexture(idle);
+
+
     }
 
 
@@ -66,6 +69,7 @@ private PhysicsComponent physics = new PhysicsComponent();
         entity.getViewComponent().addChild(playerTexture);
         playerTexture.loopAnimationChannel(idle);
     }
+
     //1 tick = 1/1,000,000 of a second
     //TPF = Tick per frame
 
@@ -101,7 +105,7 @@ private PhysicsComponent physics = new PhysicsComponent();
 
 public static class EnemyComponent extends PlayerComponent{
     EnemyComponent(){
-        idle = new AnimationChannel(FXGL.image("brick.png"), Duration.seconds(5), 100);
+        idle = new AnimationChannel(FXGL.image("player/IdleSkeleton.png"), Duration.seconds(2), 4);
         playerTexture = new AnimatedTexture(idle);
     }
 }

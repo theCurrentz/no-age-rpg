@@ -12,6 +12,7 @@ public class Composer {
     private static Composer instance;
     public Entity player;
     public Entity enemy;
+    private static int numberEnemies = 10;
 
     public static Composer getInstance() {
         if (instance == null) {
@@ -35,15 +36,11 @@ public class Composer {
 //        player = FXGL.getGameWorld().spawn("Player");
 
         player = FXGL.spawn("Player");
-        enemy = FXGL.spawn("Enemy");
-        enemy = FXGL.spawn("Enemy");
-        enemy = FXGL.spawn("Enemy");
 
-        enemy = FXGL.spawn("Enemy");
+        for(int i = 0; i<numberEnemies;i++){
+            enemy = FXGL.spawn("Enemy");
 
-        enemy = FXGL.spawn("Enemy");
-
-        enemy = FXGL.spawn("Enemy");
+        }
 
 
         //enemyComposer.createEnemyBatch(10);
