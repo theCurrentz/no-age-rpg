@@ -25,7 +25,6 @@ import java.awt.*;
 import java.util.Map;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.getInput;
-import static com.almasb.fxgl.dsl.FXGLForKtKt.getSettings;
 
 
 public class Main extends GameApplication {
@@ -35,8 +34,6 @@ public class Main extends GameApplication {
     static int hpValue = 100;
     static int manaValue = 100;
     static int expValue = 0;
-
-
 
     @Override
     protected void initSettings(GameSettings settings) {

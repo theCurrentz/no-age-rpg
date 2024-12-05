@@ -19,7 +19,7 @@ import javafx.scene.shape.Rectangle;
 public class EnvironmentFactory implements EntityFactory {
 
     public enum EntityType{
-        PLATFORM
+        PLATFORM, BORDER, BOTTOM
     }
 
 
@@ -41,6 +41,26 @@ public class EnvironmentFactory implements EntityFactory {
     public Entity spawnFloor(SpawnData data){
         return FXGL.entityBuilder(data)
                 .type(EntityType.PLATFORM)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new PhysicsComponent())
+                .collidable()
+                .build();
+    }
+
+    @Spawns("border")
+    public Entity spawnBorder(SpawnData data){
+        return FXGL.entityBuilder(data)
+                .type(EntityType.BORDER)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new PhysicsComponent())
+                .collidable()
+                .build();
+    }
+
+    @Spawns("bottom")
+    public Entity spawnBottom(SpawnData data){
+        return FXGL.entityBuilder(data)
+                .type(EntityType.BOTTOM)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new PhysicsComponent())
                 .collidable()
