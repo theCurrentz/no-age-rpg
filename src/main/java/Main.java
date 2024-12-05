@@ -10,6 +10,7 @@ import com.almasb.fxgl.ui.FXGLButton;
 
 import composer.Composer;
 import config.Config;
+import environment.EnvironmentFactory;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
@@ -19,15 +20,17 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import player.PlayerComponent;
 import javafx.scene.shape.Rectangle;
+import player.PlayerFactory;
 
 
 import java.awt.*;
 import java.util.Map;
 
-import static com.almasb.fxgl.dsl.FXGLForKtKt.getInput;
+
 
 
 public class Main extends GameApplication {
+
     Config config = Config.getInstance();
     Composer composer = Composer.getInstance();
 
@@ -35,12 +38,14 @@ public class Main extends GameApplication {
     static int manaValue = 100;
     static int expValue = 0;
 
+
+
     @Override
     protected void initSettings(GameSettings settings) {
         int width = Integer.parseInt(config.getProperty("game.width"));
         int height = Integer.parseInt(config.getProperty("game.height"));
 
-        settings.setTitle("The No Age");
+        settings.setTitle("The No Age"); 
         settings.setWidth(width);
         settings.setHeight(height);
     }
@@ -51,11 +56,9 @@ public class Main extends GameApplication {
     }
 
     @Override
-
     protected void initPhysics(){
+
     }
-
-
 
     protected void initGameVars(Map<String, Object> vars) {//Eric
         vars.put("HP", hpValue);
@@ -77,7 +80,6 @@ public class Main extends GameApplication {
         Label manaLabel = new Label();
         Label expLabel = new Label();
 
-
         hpLabel.setTextFill(Color.RED);
         hpLabel.setFont(Font.font(20.0));
         hpLabel.textProperty().bind(FXGL.getip("HP").asString("HP: %d"));
@@ -89,8 +91,6 @@ public class Main extends GameApplication {
         expLabel.setTextFill(Color.YELLOW);
         expLabel.setFont(Font.font(20.0));
         expLabel.textProperty().bind(FXGL.getip("Exp").asString("Exp: %d"));
-
-
 
         FXGL.addUINode(hpLabel, width-100, 10);
         hpLabel.textProperty().bind(FXGL.getip("HP").asString("HP: %d"));
@@ -116,18 +116,14 @@ public class Main extends GameApplication {
         dashButton.setFont(Font.font(20.0));
         dashButton.setMinWidth(100);
         FXGL.addUINode(dashButton, width-125, height-65);
-
     }
 
     @Override
     protected void initInput() {
         FXGL.onKey(KeyCode.D, "Move right", ()-> { composer.player.getComponent(PlayerComponent.class).right();});
         FXGL.onKey(KeyCode.A, "Move left", ()-> { composer.player.getComponent(PlayerComponent.class).left();});
-        FXGL.onKey(KeyCode.W, "Jump up", ()-> { composer.player.getComponent(PlayerComponent.class).jump();});
-
+        FXGL.onKeyDown(KeyCode.W, "Jump up", ()-> { composer.player.getComponent(PlayerComponent.class).jump();});
     }
-
-
 
     public static void main(String[] args) {
         launch(args);

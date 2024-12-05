@@ -10,8 +10,9 @@ import player.PlayerFactory;
 
 public class Composer {
     private static Composer instance;
-    public Entity player;
+    public Entity player, bottom;
     public Entity enemy;
+    private static int numberEnemies = 10;
 
     public static Composer getInstance() {
         if (instance == null) {
@@ -23,27 +24,22 @@ public class Composer {
     public void initGameWorld() {
         FXGL.getGameWorld().addEntityFactory(new EnvironmentFactory());
         FXGL.getGameWorld().addEntityFactory(new PlayerFactory());
-        //FXGL.getGameWorld().addEntityFactory(new EnemyFactory());
-//
+
+        FXGL.getGameWorld().addEntityFactory(new EnemyFactory());
         EnemyComposer enemyComposer = new EnemyComposer();
 
         FXGL.spawn("Background");
-
-
         FXGL.setLevelFromMap("wasteland.tmx");
 
-//        player = FXGL.getGameWorld().spawn("Player");
-
+        FXGL.spawn("Background");
+        FXGL.setLevelFromMap("wasteland.tmx");
         player = FXGL.spawn("Player");
-        enemy = FXGL.spawn("Enemy");
-        enemy = FXGL.spawn("Enemy");
-        enemy = FXGL.spawn("Enemy");
 
-        enemy = FXGL.spawn("Enemy");
+        for(int i = 0; i<numberEnemies;i++){
+            enemy = FXGL.spawn("Enemy");
 
-        enemy = FXGL.spawn("Enemy");
+        }
 
-        enemy = FXGL.spawn("Enemy");
 
 
         //enemyComposer.createEnemyBatch(10);
