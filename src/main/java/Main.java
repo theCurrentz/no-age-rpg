@@ -28,8 +28,8 @@ import java.util.Map;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
-
 public class Main extends GameApplication {
+
     Config config = Config.getInstance();
     Composer composer = Composer.getInstance();
 
@@ -42,7 +42,7 @@ public class Main extends GameApplication {
         int width = Integer.parseInt(config.getProperty("game.width"));
         int height = Integer.parseInt(config.getProperty("game.height"));
 
-        settings.setTitle("The No Age");
+        settings.setTitle("The No Age"); 
         settings.setWidth(width);
         settings.setHeight(height);
     }
@@ -53,7 +53,6 @@ public class Main extends GameApplication {
     }
 
     @Override
-
     protected void initPhysics(){
 
     }
@@ -78,7 +77,6 @@ public class Main extends GameApplication {
         Label manaLabel = new Label();
         Label expLabel = new Label();
 
-
         hpLabel.setTextFill(Color.RED);
         hpLabel.setFont(Font.font(20.0));
         hpLabel.textProperty().bind(FXGL.getip("HP").asString("HP: %d"));
@@ -90,8 +88,6 @@ public class Main extends GameApplication {
         expLabel.setTextFill(Color.YELLOW);
         expLabel.setFont(Font.font(20.0));
         expLabel.textProperty().bind(FXGL.getip("Exp").asString("Exp: %d"));
-
-
 
         FXGL.addUINode(hpLabel, width-100, 10);
         hpLabel.textProperty().bind(FXGL.getip("HP").asString("HP: %d"));
@@ -117,7 +113,6 @@ public class Main extends GameApplication {
         dashButton.setFont(Font.font(20.0));
         dashButton.setMinWidth(100);
         FXGL.addUINode(dashButton, width-125, height-65);
-
     }
 
     @Override
@@ -126,8 +121,6 @@ public class Main extends GameApplication {
         FXGL.onKey(KeyCode.A, "Move left", ()-> { composer.player.getComponent(PlayerComponent.class).left();});
         FXGL.onKey(KeyCode.W, "Jump up", ()-> { composer.player.getComponent(PlayerComponent.class).jump();});
     }
-
-
 
     public static void main(String[] args) {
         launch(args);
