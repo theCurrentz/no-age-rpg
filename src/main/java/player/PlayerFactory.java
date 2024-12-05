@@ -13,7 +13,7 @@ import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 
 public class PlayerFactory implements EntityFactory {
     public enum EntityType{
-        ENEMY, PLAYER
+        PLAYER
     }
 
 
@@ -24,7 +24,7 @@ public class PlayerFactory implements EntityFactory {
 
         return FXGL.entityBuilder(data)
                 .type(EntityType.PLAYER)
-                .at((double) -32, (double) FXGL.getAppHeight()/2)
+                .at((double) 32, (double) FXGL.getAppHeight()/2)
                 .with(physics)
                 .bbox(new HitBox(BoundingShape.box(32, 64)))
                 .with(new PlayerComponent())
