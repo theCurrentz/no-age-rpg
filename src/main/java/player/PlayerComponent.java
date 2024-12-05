@@ -52,6 +52,7 @@ private final PhysicsComponent physics = new PhysicsComponent();
         jump = new AnimationChannel(FXGL.image("player/Jump_KG_1.png"),  Duration.seconds(1), 6);
         land = new AnimationChannel(FXGL.image("player/Landing_KG_1.png"),  Duration.seconds(0.4), 4);
         playerTexture = new AnimatedTexture(idle);
+        playerTexture.setTranslateX(-32);
         currentHealth = maxHealth;
         currentMana = maxMana;
         boolean died = false;
@@ -69,16 +70,20 @@ private final PhysicsComponent physics = new PhysicsComponent();
         return FXGLMath.abs(physics.getVelocityX()) > 0;
     }
 
-    public void left() { physics.setVelocityX(-150);
+    public void left() {
+        physics.setVelocityX(-62);
         getEntity().setScaleX(-1);
     }
 
-    public void right() { physics.setVelocityX(150);
+    public void right() {
+        physics.setVelocityX(62);
         getEntity().setScaleX(1);
     }
 
-    public void jump() { physics.setVelocityY(-200);
-        coolDown.jumpCoolDown();
+    public void jump() {
+        if (entity.getY() >= 495) {
+            physics.setVelocityY(-240);
+        }
         playerTexture.playAnimationChannel(jump);
     }
 
@@ -122,7 +127,7 @@ private final PhysicsComponent physics = new PhysicsComponent();
         if(currentMana < 0) currentMana = 0;
     }
 
-    public void gainExp(int amount){
+    public void gainExp(int amount) {
         if(!reachedMaxLevel){
             //EXP difference is the amount of experience left.
             int expDifference = currentExp - maxExp;
@@ -161,28 +166,4 @@ private final PhysicsComponent physics = new PhysicsComponent();
             }
         }
     }
-
-    public static class EnemyComponent extends PlayerComponent{
-        EnemyComponent(){
-            idle = new AnimationChannel(FXGL.image("brick.png"), Duration.seconds(5), 100);
-            playerTexture = new AnimatedTexture(idle);
-        }
-    }
-
-// Note: This is the excess Exp demonstration.
-//                               |||||||
-//|||||||||||||||||||||||||||||||    '
-//___________________________________'
-
-// Note: This is the excess Exp demonstration.
-//|||                                '
-//___________________________________'
-
-//    public void right() {
-//        position.translateX(speed);
-//        if (playerTexture.getAnimationChannel() != idle) {
-//            playerTexture.loopAnimationChannel(idle);
-//        }
-//    }
-
 }
