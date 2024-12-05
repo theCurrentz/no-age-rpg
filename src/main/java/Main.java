@@ -10,6 +10,7 @@ import com.almasb.fxgl.ui.FXGLButton;
 
 import composer.Composer;
 import config.Config;
+import environment.EnvironmentFactory;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
@@ -19,12 +20,13 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import player.PlayerComponent;
 import javafx.scene.shape.Rectangle;
+import player.PlayerFactory;
 
 
 import java.awt.*;
 import java.util.Map;
 
-import static com.almasb.fxgl.dsl.FXGLForKtKt.getInput;
+import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
 
 public class Main extends GameApplication {
@@ -53,6 +55,7 @@ public class Main extends GameApplication {
     @Override
 
     protected void initPhysics(){
+
     }
 
     protected void initGameVars(Map<String, Object> vars) {//Eric
@@ -121,8 +124,7 @@ public class Main extends GameApplication {
     protected void initInput() {
         FXGL.onKey(KeyCode.D, "Move right", ()-> { composer.player.getComponent(PlayerComponent.class).right();});
         FXGL.onKey(KeyCode.A, "Move left", ()-> { composer.player.getComponent(PlayerComponent.class).left();});
-        FXGL.onKey(KeyCode.SPACE, "Jump up", ()-> { composer.player.getComponent(PlayerComponent.class).jump();});
-
+        FXGL.onKey(KeyCode.W, "Jump up", ()-> { composer.player.getComponent(PlayerComponent.class).jump();});
     }
 
 
