@@ -14,6 +14,7 @@ public class Config {
         loadProperties();
     }
 
+
     // Synchronized method to control simultaneous access
     public static synchronized Config getInstance() {
         if (instance == null) {

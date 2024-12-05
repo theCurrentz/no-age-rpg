@@ -12,6 +12,7 @@ public class Composer {
     private static Composer instance;
     public Entity player, bottom;
     public Entity enemy;
+    private static int numberEnemies = 10;
 
     public static Composer getInstance() {
         if (instance == null) {
@@ -33,6 +34,13 @@ public class Composer {
         FXGL.spawn("Background");
         FXGL.setLevelFromMap("wasteland.tmx");
         player = FXGL.spawn("Player");
+
+        for(int i = 0; i<numberEnemies;i++){
+            enemy = FXGL.spawn("Enemy");
+
+        }
+
+
 
         //enemyComposer.createEnemyBatch(10);
     }

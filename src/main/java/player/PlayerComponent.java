@@ -15,6 +15,7 @@ public class PlayerComponent extends Component {
 
 private final PhysicsComponent physics = new PhysicsComponent();
 
+
     Cooldown coolDown = new Cooldown();
     AnimatedTexture playerTexture;
     AnimationChannel idle;
@@ -92,6 +93,7 @@ private final PhysicsComponent physics = new PhysicsComponent();
         //enemyHealth -= damage;
     }
 
+
     public void takeDamage(int damageAmount){
         if(!died){
             if(currentHealth < damageAmount){
@@ -126,6 +128,7 @@ private final PhysicsComponent physics = new PhysicsComponent();
         currentMana -= manaCost;
         if(currentMana < 0) currentMana = 0;
     }
+
 
     public void gainExp(int amount) {
         if(!reachedMaxLevel){
@@ -166,4 +169,12 @@ private final PhysicsComponent physics = new PhysicsComponent();
             }
         }
     }
+
+public static class EnemyComponent extends PlayerComponent{
+    EnemyComponent(){
+        idle = new AnimationChannel(FXGL.image("player/IdleSkeleton.png"), Duration.seconds(2), 4);
+        playerTexture = new AnimatedTexture(idle);
+      }
+  }
+
 }
