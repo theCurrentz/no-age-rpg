@@ -11,14 +11,10 @@ import com.almasb.fxgl.physics.HitBox;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 
-
-
-
 public class PlayerFactory implements EntityFactory {
     public enum EntityType{
         PLAYER
     }
-
 
     @Spawns("Player")
     public Entity spawnPlayer(SpawnData data) {
@@ -27,13 +23,11 @@ public class PlayerFactory implements EntityFactory {
 
         return FXGL.entityBuilder(data)
                 .type(EntityType.PLAYER)
-                .at((double) FXGL.getAppWidth() /2, (double) FXGL.getAppHeight()/2)
-
+                .at((double) FXGL.getAppWidth() / 2, (double) FXGL.getAppHeight() / 2)
 //                .with(new CollidableComponent(true))
+
+                .bbox(new HitBox(BoundingShape.box(20, 60)))
                 .with(physics)
-
-                .bbox(new HitBox(BoundingShape.box(100, 64)))
-
                 .with(new PlayerComponent())
                 .collidable()
                 .build();
