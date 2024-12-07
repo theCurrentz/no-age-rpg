@@ -13,7 +13,7 @@ import java.util.TimerTask;
 
 public class PlayerComponent extends Component {
 
-private final PhysicsComponent physics = new PhysicsComponent();
+    private final PhysicsComponent physics = new PhysicsComponent();
 
 
     Cooldown coolDown = new Cooldown();
@@ -22,6 +22,7 @@ private final PhysicsComponent physics = new PhysicsComponent();
     AnimationChannel walk;
     AnimationChannel jump;
     AnimationChannel land;
+
 
     int currentHealth = 100;
     int maxHealth = 100;
@@ -47,11 +48,11 @@ private final PhysicsComponent physics = new PhysicsComponent();
         //playerTexture.loopAnimationChannel(idle);
     }
 
-    PlayerComponent(){
-        idle = new AnimationChannel(FXGL.image("player/Idle_KG_1.png"),  Duration.seconds(1), 4);
-        walk = new AnimationChannel(FXGL.image("player/Walking_KG_1.png"),  Duration.seconds(2), 7);
-        jump = new AnimationChannel(FXGL.image("player/Jump_KG_1.png"),  Duration.seconds(1), 6);
-        land = new AnimationChannel(FXGL.image("player/Landing_KG_1.png"),  Duration.seconds(0.4), 4);
+    public PlayerComponent() {
+        idle = new AnimationChannel(FXGL.image("player/Idle_KG_1.png"), Duration.seconds(1), 4);
+        walk = new AnimationChannel(FXGL.image("player/Walking_KG_1.png"), Duration.seconds(2), 7);
+        jump = new AnimationChannel(FXGL.image("player/Jump_KG_1.png"), Duration.seconds(1), 6);
+        land = new AnimationChannel(FXGL.image("player/Landing_KG_1.png"), Duration.seconds(0.4), 4);
         playerTexture = new AnimatedTexture(idle);
         playerTexture.setTranslateX(-32);
         currentHealth = maxHealth;
@@ -67,7 +68,7 @@ private final PhysicsComponent physics = new PhysicsComponent();
         playerTexture.loopAnimationChannel(isMoving() ? walk : idle);
     }
 
-    public boolean isMoving(){
+    public boolean isMoving() {
         return FXGLMath.abs(physics.getVelocityX()) > 0;
     }
 
@@ -88,15 +89,15 @@ private final PhysicsComponent physics = new PhysicsComponent();
         playerTexture.playAnimationChannel(jump);
     }
 
-    public void dealDamage(){
+    public void dealDamage() {
         //ToDo: Have the ability to deal damage to the other closest enemy or enemies that will take damage.
         //enemyHealth -= damage;
     }
 
 
-    public void takeDamage(int damageAmount){
-        if(!died){
-            if(currentHealth < damageAmount){
+    public void takeDamage(int damageAmount) {
+        if (!died) {
+            if (currentHealth < damageAmount) {
                 currentHealth = 0;
                 died = true;
             }
@@ -104,47 +105,47 @@ private final PhysicsComponent physics = new PhysicsComponent();
         }
     }
 
-    public void revive(){
-        if(died){
+    public void revive() {
+        if (died) {
             died = false;
             currentHealth = maxHealth;
         }
         //ToDo: Animate the character reviving; Do not let the character move as she revives.
     }
 
-    public void heal(int healAmount){
-        if(!died){
-             currentHealth += healAmount;
-             if(currentHealth > maxHealth ) currentHealth = maxHealth;
+    public void heal(int healAmount) {
+        if (!died) {
+            currentHealth += healAmount;
+            if (currentHealth > maxHealth) currentHealth = maxHealth;
         }
     }
 
-    public void gainMana(int manaAmount){
+    public void gainMana(int manaAmount) {
         currentMana += manaAmount;
-        if(currentMana > maxMana) currentMana = maxMana;
+        if (currentMana > maxMana) currentMana = maxMana;
     }
 
-    public void consumeMana(int manaCost){
+    public void consumeMana(int manaCost) {
         currentMana -= manaCost;
-        if(currentMana < 0) currentMana = 0;
+        if (currentMana < 0) currentMana = 0;
     }
 
 
     public void gainExp(int amount) {
-        if(!reachedMaxLevel){
+        if (!reachedMaxLevel) {
             //EXP difference is the amount of experience left.
             int expDifference = currentExp - maxExp;
-            if(amount > expDifference){
+            if (amount > expDifference) {
                 int excessAmount = expDifference - maxExp;
                 level++;
                 currentExp = 0;
                 currentExp += excessAmount;
 
-            }else if(amount == expDifference){
+            } else if (amount == expDifference) {
                 currentExp = 0;
                 level++;
             } else currentExp += amount;
-        }else currentExp = maxExp;
+        } else currentExp = maxExp;
     }
 
     public class Cooldown {
@@ -153,6 +154,7 @@ private final PhysicsComponent physics = new PhysicsComponent();
 
         public Cooldown() {
         }
+
         public void jumpCoolDown() {
             if (timer == null) {
                 // Perform the action
@@ -170,11 +172,13 @@ private final PhysicsComponent physics = new PhysicsComponent();
         }
     }
 
-public static class EnemyComponent extends PlayerComponent{
-    EnemyComponent(){
-        idle = new AnimationChannel(FXGL.image("player/IdleSkeleton.png"), Duration.seconds(2), 4);
-        playerTexture = new AnimatedTexture(idle);
-      }
-  }
-
+//    public static class EnemyComponent extends PlayerComponent {
+//        AnimatedTexture enemyTexture;
+//        AnimationChannel skelIdle;
+//        public EnemyComponent() {
+//            skelIdle = new AnimationChannel(FXGL.image("player/IdleSkeleton.png"), Duration.seconds(2), 4);
+//            enemyTexture = new AnimatedTexture(skelIdle);
+//        }
+//    }
 }
+
