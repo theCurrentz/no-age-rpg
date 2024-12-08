@@ -1,6 +1,5 @@
 package player;
 
-
 import com.almasb.fxgl.core.math.FXGLMath;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.physics.PhysicsComponent;
@@ -14,7 +13,6 @@ import java.util.TimerTask;
 public class PlayerComponent extends Component {
 
 private final PhysicsComponent physics = new PhysicsComponent();
-
 
     Cooldown coolDown = new Cooldown();
     AnimatedTexture playerTexture;
@@ -82,10 +80,11 @@ private final PhysicsComponent physics = new PhysicsComponent();
     }
 
     public void jump() {
-        if (entity.getY() >= 495) {
-            physics.setVelocityY(-240);
+        if (physics.getVelocityY() == -0.0) {
+            physics.setVelocityY(-280);
+            playerTexture.playAnimationChannel(jump);
         }
-        playerTexture.playAnimationChannel(jump);
+
     }
 
     public void dealDamage(){
@@ -169,12 +168,4 @@ private final PhysicsComponent physics = new PhysicsComponent();
             }
         }
     }
-
-public static class EnemyComponent extends PlayerComponent{
-    EnemyComponent(){
-        idle = new AnimationChannel(FXGL.image("player/IdleSkeleton.png"), Duration.seconds(2), 4);
-        playerTexture = new AnimatedTexture(idle);
-      }
-  }
-
 }
