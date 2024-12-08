@@ -52,11 +52,25 @@ private final PhysicsComponent physics = new PhysicsComponent();
         jump = new AnimationChannel(FXGL.image("player/Jump_KG_1.png"),  Duration.seconds(1), 6);
         land = new AnimationChannel(FXGL.image("player/Landing_KG_1.png"),  Duration.seconds(0.4), 4);
         playerTexture = new AnimatedTexture(idle);
+        playerTexture.setTranslateX(-32);
         currentHealth = maxHealth;
         currentMana = maxMana;
         boolean died = false;
         boolean move = true;
     }
+
+    public int getCurrentHealth(){
+        return this.currentHealth;
+    }
+
+    public int getCurrentMana(){
+        return this.currentMana;
+    }
+
+    public int getCurrentExp(){
+        return this.currentExp;
+    }
+
 
     //1 tick = 1/1,000,000 of a second
     //TPF = Tick per frame
@@ -64,6 +78,7 @@ private final PhysicsComponent physics = new PhysicsComponent();
     public void onUpdate(double tpf) {
         playerTexture.loopAnimationChannel(isMoving() ? walk : idle);
     }
+
 
     public boolean isMoving(){
         return FXGLMath.abs(physics.getVelocityX()) > 0;
