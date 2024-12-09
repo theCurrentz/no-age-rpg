@@ -6,15 +6,15 @@ import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
+import composer.Composer;
 import javafx.util.Duration;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class PlayerComponent extends Component {
 
-private final PhysicsComponent physics = new PhysicsComponent();
+    private final PhysicsComponent physics = new PhysicsComponent();
 
-    Cooldown coolDown = new Cooldown();
     AnimatedTexture playerTexture;
     AnimationChannel idle;
     AnimationChannel walk;
@@ -88,84 +88,54 @@ private final PhysicsComponent physics = new PhysicsComponent();
     }
 
     public void dealDamage(){
-        //ToDo: Have the ability to deal damage to the other closest enemy or enemies that will take damage.
+        // ToDo: Have the ability to deal damage to the other closest enemy or enemies that will take damage.
         //enemyHealth -= damage;
     }
 
 
-    public void takeDamage(int damageAmount){
-        if(!died){
-            if(currentHealth < damageAmount){
-                currentHealth = 0;
-                died = true;
-            }
+    public void takeDamage(int damageAmount) {
+        if (currentHealth <= damageAmount) {
+            currentHealth = 0;
+            died = true;
+            Composer composer = Composer.getInstance();
+            composer.gameOverSequence();
+        } else {
             currentHealth -= damageAmount;
         }
+        System.out.println("Player current health: " + currentHealth);
     }
 
-    public void revive(){
-        if(died){
-            died = false;
-            currentHealth = maxHealth;
-        }
-        //ToDo: Animate the character reviving; Do not let the character move as she revives.
-    }
-
-    public void heal(int healAmount){
+    public void heal(int healAmount) {
         if(!died){
-             currentHealth += healAmount;
-             if(currentHealth > maxHealth ) currentHealth = maxHealth;
+            currentHealth += healAmount;
+            if(currentHealth > maxHealth ) currentHealth = maxHealth;
         }
     }
 
-    public void gainMana(int manaAmount){
+    public void gainMana(int manaAmount) {
         currentMana += manaAmount;
         if(currentMana > maxMana) currentMana = maxMana;
     }
 
-    public void consumeMana(int manaCost){
+    public void consumeMana(int manaCost) {
         currentMana -= manaCost;
         if(currentMana < 0) currentMana = 0;
     }
 
-
     public void gainExp(int amount) {
-        if(!reachedMaxLevel){
+        if(!reachedMaxLevel) {
             //EXP difference is the amount of experience left.
             int expDifference = currentExp - maxExp;
-            if(amount > expDifference){
+            if(amount > expDifference) {
                 int excessAmount = expDifference - maxExp;
                 level++;
                 currentExp = 0;
                 currentExp += excessAmount;
 
-            }else if(amount == expDifference){
+            }else if(amount == expDifference) {
                 currentExp = 0;
                 level++;
             } else currentExp += amount;
         }else currentExp = maxExp;
-    }
-
-    public class Cooldown {
-
-        private static Timer timer;
-
-        public Cooldown() {
-        }
-        public void jumpCoolDown() {
-            if (timer == null) {
-                // Perform the action
-                physics.setVelocityY(-300);
-                timer = new Timer();
-                timer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        timer = null; // Reset the timer
-                    }
-                }, 1500); // Cooldown of 1.5 second
-            } else {
-                System.out.println("Action on cooldown!");
-            }
-        }
     }
 }
