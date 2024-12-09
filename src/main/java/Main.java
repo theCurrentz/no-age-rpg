@@ -30,15 +30,12 @@ import java.util.Map;
 
 
 public class Main extends GameApplication {
-
     Config config = Config.getInstance();
     Composer composer = Composer.getInstance();
 
     static int hpValue = 100;
     static int manaValue = 100;
     static int expValue = 0;
-
-
 
     @Override
     protected void initSettings(GameSettings settings) {
@@ -65,6 +62,7 @@ public class Main extends GameApplication {
         vars.put("Mana", manaValue);
         vars.put("Exp", expValue);
     }
+
     @Override
     protected void initUI() {// Eric
         int width = Integer.parseInt(config.getProperty("game.width"));
