@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="80" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="144">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="80" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="149">
  <tileset firstgid="1" name="wastelandbg" tilewidth="16" tileheight="16" tilecount="512" columns="32">
   <image source="../../../../../../No Age UD/Wasteland by quintino pixels/Wasteland_Sky.png" width="512" height="256"/>
  </tileset>
@@ -367,5 +367,11 @@
  </objectgroup>
  <objectgroup id="11" name="healOne">
   <object id="142" type="heal" x="1200" y="656" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="12" name="Enemy">
+  <object id="144" name="Enemy" type="Enemy" x="560" y="624" width="16" height="16"/>
+  <object id="145" name="Enemy" type="Enemy" x="768" y="592" width="16" height="16"/>
+  <object id="146" name="Enemy" type="Enemy" x="864" y="720" width="16" height="16"/>
+  <object id="147" name="Enemy" type="Enemy" x="256" y="720" width="16" height="16"/>
  </objectgroup>
 </map>
