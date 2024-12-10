@@ -1,5 +1,7 @@
 package player;
 
+import org.junit.jupiter.api.DisplayName;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerComponentTest {
@@ -18,7 +20,7 @@ class PlayerComponentTest {
     int level = 1;
     int maxLevel = 30;
 
-
+    @DisplayName("Heal")
     @org.junit.jupiter.api.Test
     void heal() {
         currentHealth = 15;
@@ -26,6 +28,7 @@ class PlayerComponentTest {
         currentHealth += healAmount;
         assertEquals(60, currentHealth );
     }
+    @DisplayName("Damage")
     @org.junit.jupiter.api.Test
     void takeDamage() {
         currentHealth = maxHealth;
