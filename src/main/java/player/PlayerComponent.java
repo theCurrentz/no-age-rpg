@@ -6,7 +6,11 @@ import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
+
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import composer.Composer;
+
 import javafx.util.Duration;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -58,12 +62,31 @@ public class PlayerComponent extends Component {
         boolean move = true;
     }
 
+    public int getCurrentHealth(){
+        return this.currentHealth;
+    }
+
+    public ObservableValue<? extends String> getCurrentHealthAsString() {
+        ObservableValue<String> health = new SimpleStringProperty(Integer.toString(this.currentHealth));
+        return health;
+    }
+
+    public int getCurrentMana(){
+        return this.currentMana;
+    }
+
+    public int getCurrentExp(){
+        return this.currentExp;
+    }
+
+
     //1 tick = 1/1,000,000 of a second
     //TPF = Tick per frame
     @Override
     public void onUpdate(double tpf) {
         playerTexture.loopAnimationChannel(isMoving() ? walk : idle);
     }
+
 
     public boolean isMoving(){
         return FXGLMath.abs(physics.getVelocityX()) > 0;

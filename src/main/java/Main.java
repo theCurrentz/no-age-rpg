@@ -3,11 +3,14 @@ import com.almasb.fxgl.app.GameSettings;
 
 
 import com.almasb.fxgl.dsl.FXGL;
+import com.almasb.fxgl.dsl.handlers.CollectibleHandler;
 import com.almasb.fxgl.input.UserAction;
 
 import com.almasb.fxgl.entity.Entity;
+import com.almasb.fxgl.physics.CollisionHandler;
 import com.almasb.fxgl.ui.FXGLButton;
 
+import com.almasb.fxgl.ui.UI;
 import composer.Composer;
 import config.Config;
 import environment.EnvironmentFactory;
@@ -33,9 +36,9 @@ public class Main extends GameApplication {
     Config config = Config.getInstance();
     Composer composer = Composer.getInstance();
 
-    static int hpValue = 100;
-    static int manaValue = 100;
-    static int expValue = 0;
+    int hpValue = 100;
+    int manaValue = 100;
+    int expValue = 0;
 
     @Override
     protected void initSettings(GameSettings settings) {
@@ -50,14 +53,23 @@ public class Main extends GameApplication {
     @Override
     protected void initGame() {
         composer.initGameWorld();
+
+
     }
 
     @Override
     protected void initPhysics(){
-
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(PlayerFactory.EntityType.PLAYER, EnvironmentFactory.EntityType.HEAL) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity heal) {
+                heal.removeFromWorld();
+                composer.player.getComponent(PlayerComponent.class).heal(30);
+                System.out.println("Healed!");
+            }
+        });
     }
 
-    protected void initGameVars(Map<String, Object> vars) {//Eric
+    protected void initGameVars(Map<String, Object> vars) {
         vars.put("HP", hpValue);
         vars.put("Mana", manaValue);
         vars.put("Exp", expValue);
@@ -65,6 +77,7 @@ public class Main extends GameApplication {
 
     @Override
     protected void initUI() {// Eric
+
         int width = Integer.parseInt(config.getProperty("game.width"));
         int height = Integer.parseInt(config.getProperty("game.height"));
 
@@ -73,6 +86,16 @@ public class Main extends GameApplication {
         statRectangle.setWidth(100);
         statRectangle.setStyle("-fx-fill: gray; -fx-stroke: black; -fx-stroke-width: 3;");
         FXGL.addUINode(statRectangle, width-105, 2);
+
+        //New Text format for UI binding to Observable values
+        Text textHP = FXGL.getUIFactoryService().newText("HP", 50);
+        textHP.setTranslateX(100);
+        textHP.setTranslateY(100);
+        textHP.setStroke(Color.RED);
+
+        textHP.textProperty().bind(composer.player.getComponent(PlayerComponent.class).getCurrentHealthAsString());
+        getGameScene().addUINode(textHP);
+        //
 
         Label hpLabel = new Label();
         Label manaLabel = new Label();
