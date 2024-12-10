@@ -23,7 +23,7 @@ public class UnitTests {//Eric
 
 
     @Test
-    @DisplayName("Test Screen Height")
+    @DisplayName("Test Screen Height")//Eric Suttle
 
      void testScreenHeight(){
         Config config = Config.getInstance();
@@ -32,7 +32,7 @@ public class UnitTests {//Eric
     }
 
     @Test
-    @DisplayName("Test Screen Width")
+    @DisplayName("Test Screen Width")//Eric Suttle
     void testScreenWidth(){
         Config config = Config.getInstance();
         int gameWidth = Integer.parseInt(config.getProperty("game.width"));;

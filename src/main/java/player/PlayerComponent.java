@@ -176,7 +176,7 @@ public class PlayerComponent extends Component {
 //        AnimatedTexture enemyTexture;
 //        AnimationChannel skelIdle;
 //        public EnemyComponent() {
-//            skelIdle = new AnimationChannel(FXGL.image("player/IdleSkeleton.png"), Duration.seconds(2), 4);
+//            skelIdle = new AnimationChannel(FXGL.image("enemy/Idle.png), Duration.seconds(2), 4);
 //            enemyTexture = new AnimatedTexture(skelIdle);
 //        }
 //    }
