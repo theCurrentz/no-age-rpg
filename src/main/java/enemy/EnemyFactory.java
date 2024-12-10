@@ -6,8 +6,17 @@ import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.EntityFactory;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
+import com.almasb.fxgl.physics.BoundingShape;
+import com.almasb.fxgl.physics.HitBox;
+import com.almasb.fxgl.physics.PhysicsComponent;
+import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
+import com.almasb.fxgl.texture.AnimatedTexture;
+import com.almasb.fxgl.texture.AnimationChannel;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
+import player.PlayerComponent;
+import player.PlayerFactory;
 
 public class EnemyFactory implements EntityFactory {
     private static final int SIZE = 10;
@@ -24,8 +33,10 @@ public class EnemyFactory implements EntityFactory {
 
         return FXGL.entityBuilder()
                 .at(x, y)
-                .viewWithBBox(new Rectangle(40, 40, Color.RED))
+                .viewWithBBox(new Rectangle(32, 64))
+                .with(new EnemyComponent())
                 .type(EntityType.ENEMY)
                 .buildAndAttach();
     }
 }
+
