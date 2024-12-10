@@ -15,8 +15,13 @@ public class EnemyComponent extends Component {
     double lastAttackTime = 0.0;
     private final static double cooldownDuration = 3.2;
 
+    public void onAdded() {
+        entity.getViewComponent().addChild(texture);
+        //playerTexture.loopAnimationChannel(idle);
+    }
+
     EnemyComponent() {
-        idle = new AnimationChannel(FXGL.image("player/IdleSkeleton.png"), Duration.seconds(2), 4);
+        idle = new AnimationChannel(FXGL.image("enemy/Idle.png"), Duration.seconds(2), 4);
         texture = new AnimatedTexture(idle);
     }
 

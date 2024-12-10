@@ -28,11 +28,14 @@ public class EnemyFactory implements EntityFactory {
 
     @Spawns("Enemy")
     public Entity spawnEnemy(SpawnData data) {
+        PhysicsComponent physics = new PhysicsComponent();
+
         double x = FXGLMath.random(0, FXGL.getAppWidth() - SIZE);
         double y = FXGLMath.random(0, FXGL.getAppHeight() - SIZE);
 
         return FXGL.entityBuilder()
                 .at(x, y)
+                .with(physics)
                 .viewWithBBox(new Rectangle(32, 64))
                 .with(new EnemyComponent())
                 .type(EntityType.ENEMY)
