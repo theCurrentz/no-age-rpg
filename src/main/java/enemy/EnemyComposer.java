@@ -22,7 +22,7 @@ public class EnemyComposer {
     public void checkProximityAndHandleAttacks(Entity player) {
         for (Entity enemy : enemies) {
             double distance = player.getCenter().distance(enemy.getCenter());
-a
+
             if (distance <= 125) {
                 EnemyComponent ec = enemy.getComponent(EnemyComponent.class);
                 ec.attack(player);
