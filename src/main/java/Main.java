@@ -86,13 +86,15 @@ public class Main extends GameApplication {
         statRectangle.setStyle("-fx-fill: gray; -fx-stroke: black; -fx-stroke-width: 3;");
         FXGL.addUINode(statRectangle, width-105, 2);
 
-//        Text textHP = FXGL.getUIFactoryService().newText("HP", 50);
-//        textHP.setTranslateX(100);
-//        textHP.setTranslateY(100);
-//        textHP.setStroke(Color.RED);
-//
-//        textHP.textProperty().bind(composer.player.getComponent(PlayerComponent.class).getCurrentHealth().);
-//        getGameScene().addUINode(textHP);
+        //New Text format for UI binding to Observable values
+        Text textHP = FXGL.getUIFactoryService().newText("HP", 50);
+        textHP.setTranslateX(100);
+        textHP.setTranslateY(100);
+        textHP.setStroke(Color.RED);
+
+        textHP.textProperty().bind(composer.player.getComponent(PlayerComponent.class).getCurrentHealthAsString());
+        getGameScene().addUINode(textHP);
+        //
 
         Label hpLabel = new Label();
         Label manaLabel = new Label();

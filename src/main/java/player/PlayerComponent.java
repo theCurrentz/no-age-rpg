@@ -7,6 +7,8 @@ import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.util.Duration;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -61,6 +63,11 @@ private final PhysicsComponent physics = new PhysicsComponent();
 
     public int getCurrentHealth(){
         return this.currentHealth;
+    }
+
+    public ObservableValue<? extends String> getCurrentHealthAsString() {
+        ObservableValue<String> health = new SimpleStringProperty(Integer.toString(this.currentHealth));
+        return health;
     }
 
     public int getCurrentMana(){
