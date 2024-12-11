@@ -37,7 +37,7 @@ public class Composer {
         FXGL.setLevelFromMap("wasteland.tmx");
         player = FXGL.spawn("Player");
 
-        enemyComposer.createEnemyBatch(10);
+//        enemyComposer.createEnemyBatch(10);
         FXGL.getGameTimer().runAtInterval(() -> enemyComposer.checkProximityAndHandleAttacks(player), javafx.util.Duration.seconds(0.016));
     }
 
