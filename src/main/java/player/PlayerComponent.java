@@ -1,6 +1,8 @@
 package player;
 
 import com.almasb.fxgl.core.math.FXGLMath;
+import com.almasb.fxgl.dsl.components.HealthIntComponent;
+import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.dsl.FXGL;
@@ -15,7 +17,7 @@ import javafx.util.Duration;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class PlayerComponent extends Component {
+public class PlayerComponent extends Component{
 
     private final PhysicsComponent physics = new PhysicsComponent();
 
@@ -42,6 +44,8 @@ public class PlayerComponent extends Component {
     boolean died;
     boolean move;
     boolean reachedMaxLevel = false;
+//    Entity player = player.addComponent(new HealthIntComponent(100));
+//    int health = player.getComponent(PlayerComponent.class).getCurrentHealth();
 
     @Override
     public void onAdded() {
@@ -56,7 +60,7 @@ public class PlayerComponent extends Component {
         land = new AnimationChannel(FXGL.image("player/Landing_KG_1.png"),  Duration.seconds(0.4), 4);
         playerTexture = new AnimatedTexture(idle);
         playerTexture.setTranslateX(-32);
-        currentHealth = maxHealth;
+        currentHealth = maxHealth; //might need to bind as 100 and not max health
         currentMana = maxMana;
         boolean died = false;
         boolean move = true;
@@ -65,6 +69,10 @@ public class PlayerComponent extends Component {
     public int getCurrentHealth(){
         return this.currentHealth;
     }
+
+    public PlayerComponent(int currentHealth) {
+        this.currentHealth = currentHealth;
+        }
 
     public ObservableValue<? extends String> getCurrentHealthAsString() {
         ObservableValue<String> health = new SimpleStringProperty(Integer.toString(this.currentHealth));
@@ -79,7 +87,6 @@ public class PlayerComponent extends Component {
         return this.currentExp;
     }
 
-
     //1 tick = 1/1,000,000 of a second
     //TPF = Tick per frame
     @Override
@@ -87,18 +94,17 @@ public class PlayerComponent extends Component {
         playerTexture.loopAnimationChannel(isMoving() ? walk : idle);
     }
 
-
     public boolean isMoving(){
         return FXGLMath.abs(physics.getVelocityX()) > 0;
     }
 
     public void left() {
-        physics.setVelocityX(-62);
+        physics.setVelocityX(-82);
         getEntity().setScaleX(-1);
     }
 
     public void right() {
-        physics.setVelocityX(62);
+        physics.setVelocityX(82);
         getEntity().setScaleX(1);
     }
 
@@ -115,7 +121,6 @@ public class PlayerComponent extends Component {
         //enemyHealth -= damage;
     }
 
-
     public void takeDamage(int damageAmount) {
         if (currentHealth <= damageAmount) {
             currentHealth = 0;
@@ -126,6 +131,7 @@ public class PlayerComponent extends Component {
             currentHealth -= damageAmount;
         }
         System.out.println("Player current health: " + currentHealth);
+//        return currentHealth;
     }
 
     public void heal(int healAmount) {

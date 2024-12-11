@@ -5,10 +5,13 @@ import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
+import composer.Composer;
 import javafx.util.Duration;
 import player.PlayerComponent;
 
 public class EnemyComponent extends Component {
+
+
     AnimatedTexture texture;
     AnimationChannel idle;
 
