@@ -29,12 +29,17 @@ public class EnemyFactory implements EntityFactory {
     @Spawns("Enemy")
     public Entity spawnEnemy(SpawnData data) {
         PhysicsComponent physics = new PhysicsComponent();
-        return FXGL.entityBuilder()
+        Entity enemy = FXGL.entityBuilder()
                 .with(physics)
                 .bbox(new HitBox(BoundingShape.box(32, 64)))
                 .with(new EnemyComponent())
                 .type(EntityType.ENEMY)
                 .build();
+
+        EnemyComposer enemyComposer = EnemyComposer.getInstance();
+        enemyComposer.addEnemy(enemy);
+
+        return enemy;
     }
 }
 

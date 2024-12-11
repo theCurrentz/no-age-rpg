@@ -144,6 +144,7 @@ public class Main extends GameApplication {
         FXGL.onKey(KeyCode.D, "Move right", ()-> { composer.player.getComponent(PlayerComponent.class).right();});
         FXGL.onKey(KeyCode.A, "Move left", ()-> { composer.player.getComponent(PlayerComponent.class).left();});
         FXGL.onKeyDown(KeyCode.W, "Jump up", ()-> { composer.player.getComponent(PlayerComponent.class).jump();});
+        FXGL.onKeyDown(KeyCode.Q, "Atack", ()-> { composer.player.getComponent(PlayerComponent.class).attack();});
     }
 
     public static void main(String[] args) {

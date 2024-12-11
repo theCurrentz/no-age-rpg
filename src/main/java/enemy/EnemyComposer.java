@@ -7,25 +7,40 @@ import java.util.ArrayList;
 
 public class EnemyComposer {
 
+    private static EnemyComposer instance;
+
+    private EnemyComposer() {}
+
+    public static EnemyComposer getInstance() {
+        if (instance == null) {
+            instance = new EnemyComposer();
+        }
+        return instance;
+    }
+
     ArrayList<Entity> enemies = new ArrayList<Entity>();
 
-    public ArrayList<Entity> createEnemyBatch(int amount) {
+    public void addEnemy(Entity enemy) {
+        enemies.add(enemy);
+    }
 
-        for (int i = 0; i < amount; i++) {
-            Entity enemy = FXGL.spawn("Enemy");
-            enemies.add(enemy);
-        }
+    public void removeEnemy(int index) {
+        enemies.set(index, null);
+    }
 
+    public ArrayList<Entity> getEnemies() {
         return enemies;
     }
 
     public void checkProximityAndHandleAttacks(Entity player) {
         for (Entity enemy : enemies) {
-            double distance = player.getCenter().distance(enemy.getCenter());
+            if (enemy != null) {
+                double distance = player.getCenter().distance(enemy.getCenter());
 
-            if (distance <= 125) {
-                EnemyComponent ec = enemy.getComponent(EnemyComponent.class);
-                ec.attack(player);
+                if (distance <= 100) {
+                    EnemyComponent ec = enemy.getComponent(EnemyComponent.class);
+                    ec.attack(player);
+                }
             }
         }
     }
