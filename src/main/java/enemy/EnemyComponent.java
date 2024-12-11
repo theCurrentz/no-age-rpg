@@ -23,6 +23,8 @@ public class EnemyComponent extends Component {
     EnemyComponent() {
         idle = new AnimationChannel(FXGL.image("enemy/Idle.png"), Duration.seconds(2), 4);
         texture = new AnimatedTexture(idle);
+        texture.setTranslateX(-48);
+        texture.setTranslateY(-84);
     }
 
     public void attack(Entity player) {

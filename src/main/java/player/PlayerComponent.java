@@ -104,7 +104,7 @@ public class PlayerComponent extends Component {
 
     public void jump() {
         if (physics.getVelocityY() == -0.0) {
-            physics.setVelocityY(-280);
+            physics.setVelocityY(-380);
             playerTexture.playAnimationChannel(jump);
         }
 
