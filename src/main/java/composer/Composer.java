@@ -13,8 +13,6 @@ import javafx.util.Duration;
 public class Composer {
     private static Composer instance;
     public Entity player, bottom;
-    public Entity enemy;
-    private static int numberEnemies = 10;
 
     public static Composer getInstance() {
         if (instance == null) {
@@ -28,16 +26,13 @@ public class Composer {
         FXGL.getGameWorld().addEntityFactory(new PlayerFactory());
 
         FXGL.getGameWorld().addEntityFactory(new EnemyFactory());
-        EnemyComposer enemyComposer = new EnemyComposer();
+        EnemyComposer enemyComposer = EnemyComposer.getInstance();
 
         FXGL.spawn("Background");
         FXGL.setLevelFromMap("wasteland.tmx");
 
-        FXGL.spawn("Background");
-        FXGL.setLevelFromMap("wasteland.tmx");
         player = FXGL.spawn("Player");
 
-//        enemyComposer.createEnemyBatch(10);
         FXGL.getGameTimer().runAtInterval(() -> enemyComposer.checkProximityAndHandleAttacks(player), javafx.util.Duration.seconds(0.016));
     }
 

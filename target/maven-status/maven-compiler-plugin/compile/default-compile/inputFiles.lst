@@ -1,8 +1,9 @@
-C:\CS210lab02\no-age-rpg\src\main\java\config\Config.java
-C:\CS210lab02\no-age-rpg\src\main\java\player\PlayerFactory.java
-C:\CS210lab02\no-age-rpg\src\main\java\environment\EnvironmentFactory.java
-C:\CS210lab02\no-age-rpg\src\main\java\enemy\EnemyFactory.java
-C:\CS210lab02\no-age-rpg\src\main\java\Main.java
-C:\CS210lab02\no-age-rpg\src\main\java\enemy\EnemyComposer.java
-C:\CS210lab02\no-age-rpg\src\main\java\composer\Composer.java
-C:\CS210lab02\no-age-rpg\src\main\java\player\PlayerComponent.java
+/Users/parkerwestfall/Developer/no-age-rpg/src/main/java/player/PlayerComponent.java
+/Users/parkerwestfall/Developer/no-age-rpg/src/main/java/enemy/EnemyFactory.java
+/Users/parkerwestfall/Developer/no-age-rpg/src/main/java/enemy/EnemyComponent.java
+/Users/parkerwestfall/Developer/no-age-rpg/src/main/java/composer/Composer.java
+/Users/parkerwestfall/Developer/no-age-rpg/src/main/java/enemy/EnemyComposer.java
+/Users/parkerwestfall/Developer/no-age-rpg/src/main/java/player/PlayerFactory.java
+/Users/parkerwestfall/Developer/no-age-rpg/src/main/java/environment/EnvironmentFactory.java
+/Users/parkerwestfall/Developer/no-age-rpg/src/main/java/Main.java
+/Users/parkerwestfall/Developer/no-age-rpg/src/main/java/config/Config.java
